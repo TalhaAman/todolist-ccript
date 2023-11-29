@@ -1,0 +1,19 @@
+.add-todo {
+  background-color: #fff;
+  padding: 6px 10px;
+  width: 400px;
+  border-radius: 5px;
+  height: 40px;
+}
+.add-todo input {
+  width: 100%;
+  border: none;
+  outline: none;
+}
+.add-todo input::placeholder {
+  color: #9e9e9e;
+}
+.plus-icon {
+  width: 20px;
+  height: 20px;
+}

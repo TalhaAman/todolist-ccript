@@ -1,0 +1,24 @@
+.todos-toggle {
+  width: 400px;
+  height: 40px;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border: 1px solid #cfc0a7;
+  background-color: rgba(167, 152, 125, 0.715);
+  padding: 20px 10px;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+.todos-list {
+  background-color: rgba(220, 213, 205, 0.97);
+  height: 280px;
+  border-radius: 10px;
+  overflow-y: scroll;
+}
+.list-icon {
+  width: 30px;
+}
+.chevron-icon {
+  width: 20px;
+}

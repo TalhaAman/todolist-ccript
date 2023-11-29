@@ -1,0 +1,18 @@
+.todo-item {
+  padding: 20px 8px;
+}
+.check-icon {
+  width: 30px;
+  cursor: pointer;
+  stroke: #7c6f5a;
+}
+.checked {
+  stroke: rgb(2, 169, 91);
+}
+.no-pointer {
+  cursor: default !important;
+}
+.circle-icon {
+  width: 30px;
+  cursor: pointer;
+}

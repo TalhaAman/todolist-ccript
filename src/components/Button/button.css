@@ -1,0 +1,17 @@
+.plus-btn {
+  background-color: rgb(187, 175, 147);
+  color: rgb(134, 127, 103);
+  border: none;
+  border-radius: 5px;
+  width: 30px;
+  height: 30px;
+}
+.delete-btn {
+  background-color: rgb(246, 205, 203);
+  color: rgb(219, 133, 135);
+  padding: 7px 0;
+  border: none;
+  width: 100%;
+  border-radius: 5px;
+  margin-top: 5px;
+}

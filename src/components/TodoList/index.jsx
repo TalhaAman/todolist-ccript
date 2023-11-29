@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./todoList.css";
 
-import firebaseService from "../../services/firebaseServices";
 import TodoItem from "../TodoItem";
-import chevron from "../../assets/icons/chevron.svg";
-import { ReactSVG } from "react-svg";
 import list from "../../assets/icons/listIcon.svg";
-import { nanosecondsToTime } from "../../utils/helperFunctions";
-// import ChevronIcon from "../../assets/icons/ChevronIcon";
+import chevron from "../../assets/icons/chevron.svg";
+import firebaseService from "../../services/firebaseServices";
+
+import { ReactSVG } from "react-svg";
 
 const TodoList = ({ tasks, setTasks }) => {
   const [loading, setLoading] = useState(false);
@@ -15,6 +14,7 @@ const TodoList = ({ tasks, setTasks }) => {
   const [toggleTasks, setToggleTasks] = useState(true);
   const [toggleDetail, setToggleDetail] = useState(null);
 
+  //Function for deleting task from todo list
   const handleDeleteItem = async (id) => {
     setDelLoading(true);
     try {
@@ -27,10 +27,12 @@ const TodoList = ({ tasks, setTasks }) => {
     setDelLoading(false);
   };
 
+  //Function for toggling detail of a task
   const handleDetail = (id) => {
     toggleDetail == id ? setToggleDetail(null) : setToggleDetail(id);
   };
 
+  //Function for marking a task as completed
   const handleCheck = async (task) => {
     try {
       const res = await firebaseService.updateDocument("tasks", task?.id, {
@@ -49,15 +51,17 @@ const TodoList = ({ tasks, setTasks }) => {
     }
   };
 
+  //Function for fetching all the tasks
   const fetchTasks = async () => {
     setLoading(true);
     try {
       const res = await firebaseService.getDocuments("tasks");
       console.log(res);
+
+      //for sorting (most recent on top)
       const sort = res.sort(
         (a, b) => b.createdAt.seconds - a.createdAt.seconds
       );
-      console.log(sort);
       setTasks(res);
     } catch (error) {
       console.log(error);

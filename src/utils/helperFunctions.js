@@ -1,19 +1,3 @@
-export const nanosecondsSecondsToDateTime = (nanoseconds, seconds) => {
-  // Convert nanoseconds to milliseconds and add it to the seconds
-  const totalMilliseconds = seconds * 1000 + Math.floor(nanoseconds / 1e6);
-
-  // Create a new Date object using the total milliseconds
-  const resultDate = new Date(totalMilliseconds);
-
-  // Format the date as 'day Month year'
-  const options = { year: "numeric", month: "short", day: "numeric" };
-  const formattedDate = new Intl.DateTimeFormat("en-US", options).format(
-    resultDate
-  );
-
-  return formattedDate;
-};
-
 export const nanosecondsToTime = (nanoseconds, seconds) => {
   // Convert nanoseconds to milliseconds and add it to the seconds
   const totalMilliseconds = seconds * 1000 + Math.floor(nanoseconds / 1e6);

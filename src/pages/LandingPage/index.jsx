@@ -1,30 +1,33 @@
 import React, { useState } from "react";
 import "./landingpage.css";
 
-import Profile from "../../assets/images/profile.jpg";
+import Button from "../../components/Button";
 import Plus from "../../assets/icons/plus.svg";
 import TodoList from "../../components/TodoList";
-import Button from "../../components/Button";
-import { ReactSVG } from "react-svg";
+import Profile from "../../assets/images/profile.jpg";
 import firebaseService from "../../services/firebaseServices";
 import { convertDateToFirestoreTimestamp } from "../../utils/helperFunctions";
+
+import { ReactSVG } from "react-svg";
 
 const LandingPage = () => {
   const [loading, setLoading] = useState(false);
   const [todo, setTodo] = useState("");
   const [tasks, setTasks] = useState([]);
 
+  //Function for adding a new task
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
       const date = new Date();
+
       const res = await firebaseService.addDocument("tasks", {
         title: todo,
         status: false,
         createdAt: convertDateToFirestoreTimestamp(date),
       });
-      console.log(res);
+
       setTasks((tasks) => [res, ...tasks]);
       setTodo("");
     } catch (error) {

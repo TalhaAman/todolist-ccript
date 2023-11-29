@@ -1,10 +1,12 @@
 import React from "react";
 import "./todoItem.css";
-import { nanosecondsToTime } from "../../utils/helperFunctions";
-import { ReactSVG } from "react-svg";
-import check from "../../assets/icons/check.svg";
-import dots from "../../assets/icons/dots.svg";
+
 import Button from "../Button";
+import dots from "../../assets/icons/dots.svg";
+import check from "../../assets/icons/check.svg";
+import { nanosecondsToTime } from "../../utils/helperFunctions";
+
+import { ReactSVG } from "react-svg";
 
 const TodoItem = ({
   task,

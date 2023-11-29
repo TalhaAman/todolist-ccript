@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./LandingPage.css";
+import "./landingpage.css";
 
 import Profile from "../../assets/images/profile.jpg";
 import Plus from "../../assets/icons/plus.svg";

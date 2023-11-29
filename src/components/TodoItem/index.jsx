@@ -25,7 +25,7 @@ const TodoItem = ({
           <ReactSVG
             src={check}
             className={`${task?.status && "checked no-pointer"} check-icon`}
-            onClick={() => onCheck(task)}
+            onClick={() => !task?.status && onCheck(task)}
           />
           <p
             className="m-0 text-capitalize text-truncate"

@@ -7,7 +7,7 @@ import TodoList from "../../components/TodoList";
 import Button from "../../components/Button";
 import { ReactSVG } from "react-svg";
 import firebaseService from "../../services/firebaseServices";
-import { dateToNanoseconds } from "../../utils/helperFunctions";
+import { convertDateToFirestoreTimestamp } from "../../utils/helperFunctions";
 
 const LandingPage = () => {
   const [loading, setLoading] = useState(false);
@@ -22,13 +22,10 @@ const LandingPage = () => {
       const res = await firebaseService.addDocument("tasks", {
         title: todo,
         status: false,
-        createdAt: date,
+        createdAt: convertDateToFirestoreTimestamp(date),
       });
       console.log(res);
-      setTasks((tasks) => [
-        { ...res, createdAt: dateToNanoseconds(res.createdAt) },
-        ...tasks,
-      ]);
+      setTasks((tasks) => [res, ...tasks]);
       setTodo("");
     } catch (error) {
       console.log(error);

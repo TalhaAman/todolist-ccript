@@ -6,6 +6,7 @@ import TodoItem from "../TodoItem";
 import chevron from "../../assets/icons/chevron.svg";
 import { ReactSVG } from "react-svg";
 import list from "../../assets/icons/listIcon.svg";
+import { nanosecondsToTime } from "../../utils/helperFunctions";
 // import ChevronIcon from "../../assets/icons/ChevronIcon";
 
 const TodoList = ({ tasks, setTasks }) => {
@@ -33,12 +34,15 @@ const TodoList = ({ tasks, setTasks }) => {
   const handleCheck = async (task) => {
     try {
       const res = await firebaseService.updateDocument("tasks", task?.id, {
-        ...task,
         status: true,
+        title: task?.title,
+        createdAt: task?.createdAt,
+        id: task?.id,
       });
       const filteredTasks = tasks.filter((tk) => tk.id !== task?.id);
       const updatedTasks = [...filteredTasks, { ...task, status: true }];
-      updatedTasks.sort((a, b) => b.createdAt - a.createdAt);
+      updatedTasks.sort((a, b) => b.createdAt.seconds - a.createdAt.seconds);
+      console.log(updatedTasks);
       setTasks(updatedTasks);
     } catch (error) {
       console.log(error);
@@ -50,7 +54,10 @@ const TodoList = ({ tasks, setTasks }) => {
     try {
       const res = await firebaseService.getDocuments("tasks");
       console.log(res);
-      res.sort((a, b) => b.createdAt - a.createdAt);
+      const sort = res.sort(
+        (a, b) => b.createdAt.seconds - a.createdAt.seconds
+      );
+      console.log(sort);
       setTasks(res);
     } catch (error) {
       console.log(error);

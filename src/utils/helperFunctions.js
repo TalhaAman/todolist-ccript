@@ -44,13 +44,17 @@ export const nanosecondsToTime = (nanoseconds, seconds) => {
   return formattedDateTime;
 };
 
-export const dateToNanoseconds = (date) => {
-  // Get the total milliseconds since epoch
-  const totalMilliseconds = date.getTime();
+export const convertDateToFirestoreTimestamp = (date) => {
+  if (!(date instanceof Date)) {
+    throw new Error("Invalid input. Please provide a valid Date object.");
+  }
 
-  // Calculate seconds and nanoseconds
-  const seconds = Math.floor(totalMilliseconds / 1000);
-  const nanoseconds = (totalMilliseconds % 1000) * 1e6;
+  // Convert the date to seconds and nanoseconds
+  var seconds = Math.floor(date.getTime() / 1000); // Convert milliseconds to seconds
+  var nanoseconds = (date.getTime() % 1000) * 1e6; // Convert remaining milliseconds to nanoseconds
 
-  return { seconds, nanoseconds };
+  return {
+    seconds: seconds,
+    nanoseconds: nanoseconds,
+  };
 };

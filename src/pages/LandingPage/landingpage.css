@@ -22,7 +22,7 @@
 .add-todo {
   background-color: #fff;
   padding: 6px 10px;
-  width: 400px;
+  width: 300px;
   border-radius: 5px;
   height: 40px;
 }
@@ -37,4 +37,10 @@
 .plus-icon {
   width: 20px;
   height: 20px;
+}
+
+@media only screen and (min-width: 480px) {
+  .add-todo {
+    width: 400px;
+  }
 }
